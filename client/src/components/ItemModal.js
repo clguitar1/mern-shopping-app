@@ -30,7 +30,6 @@ class ItemModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log('newItem!');
     const newItem = {
       name: this.state.name
     };
@@ -46,7 +45,7 @@ class ItemModal extends Component {
       <div className='ItemModal'>
         <Button
           color='dark'
-          style={{ marginBottom: '2rem' }}
+          style={{ marginBottom: '2rem', marginTop: '2rem' }}
           onClick={this.toggle}
         >
           Add Item
