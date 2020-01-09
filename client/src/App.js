@@ -1,11 +1,24 @@
 import React from 'react';
 import './App.css';
+import AppNavbar from './components/AppNavbar';
+import ShoppingList from './components/ShoppingList';
+import ItemModal from './components/ItemModal';
+import { Container } from 'reactstrap';
+
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <div className='App'>
-      <h1>App.js</h1>
-    </div>
+    <Provider store={store}>
+      <div className='App'>
+        <AppNavbar />
+        <Container>
+          <ItemModal />
+          <ShoppingList />
+        </Container>
+      </div>
+    </Provider>
   );
 }
 
