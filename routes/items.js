@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth.middleware');
 
 const Item = require('../models/Item');
 
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
 
 // @route   POST api/items
 // @desc    Create an item
-// @access  Public
+// @access  Private
 // router.post('/', (req, res) => {
 //   const newItem = new Item({
 //     name: req.body.name
@@ -31,7 +32,7 @@ router.get('/', async (req, res) => {
 
 //   newItem.save().then(item => res.json(item));
 // });
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const newItem = new Item({
       name: req.body.name
@@ -48,13 +49,13 @@ router.post('/', async (req, res) => {
 
 // @route   DELETE api/items/:id
 // @desc    Delete an item
-// @access  Public
+// @access  Private
 // router.delete('/:id', (req, res) => {
 //   Item.findById(req.params.id)
 //     .then(item => item.remove().then(() => res.json({ success: true })))
 //     .catch(err => res.status(404).json({ success: false }));
 // });
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     await Item.findByIdAndRemove(req.params.id);
 
